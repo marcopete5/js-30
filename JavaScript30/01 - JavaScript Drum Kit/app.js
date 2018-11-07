@@ -47,13 +47,10 @@ for(let i = 0; i < keys.length; i++){
 }
 
 function changeBox (key){
-    if (!key[1].paused){
-        key[1].pause();
-        key[1].currentTime = 0;
-    }
     key[0].style.border = `5px solid #ffff00d9`
     key[0].style.boxShadow = `0px 0px 30px yellow`
     key[0].childNodes[1].style.fontSize = `4.1rem`
+    key[1].currentTime = 0;
     key[1].play()
     setTimeout(()=> {
         key[0].style.border = `.4rem solid black`
