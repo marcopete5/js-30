@@ -32,6 +32,13 @@ function updateProgress (){
     console.log('hello')
 }
 
+function scrub (e){
+    console.log(e.offsetX)
+    const scrubTime = (e.offsetX / progress.offsetWidth) * video.duration
+    video.currentTime = scrubTime
+}
+
+let mousedown = false;
 
 toggle.addEventListener('click', togglePlay)
 video.addEventListener('click', togglePlay)
@@ -41,6 +48,10 @@ window.addEventListener('keypress', (e)=>{
         togglePlay()
     }
 }) 
+progress.addEventListener('click', scrub)
+progress.addEventListener('mousedown', () => mousedown = true)
+progress.addEventListener('mouseup', () => mousedown = false)
+progress.addEventListener('mousemove', (e) => mousedown && scrub(e))
 
 skipButtons.forEach(skip => {
     skip.addEventListener('click', skipTime)
